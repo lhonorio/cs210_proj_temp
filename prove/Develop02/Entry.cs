@@ -1,43 +1,48 @@
 public class Entry
 {   
-    Prompt prompt; 
+    string _date;
+    string _prompt;
+    string _entry;
 
 
-    public Entry()
-        {
-
-        }
-
-
-    private string GetDate()
+    public Entry(string date = "", string prompt = "", string entry = "")
     {
-        DateTime thisDay = DateTime.Today;
-        string today = thisDay.ToString();
-
-        return today;
+        _date = date;
+        _prompt = prompt;
+        _entry = entry;
     }
-    
+
+
+    public void SetCurrentDate()
+    {
+        DateTime theCurrentTime = DateTime.Now;
+        string dateText = theCurrentTime.ToShortDateString();
+
+        _date = dateText;
+    }
+
+    public void SetDate(string date)
+    {
+        _date = date;
+    }
+
+    public void SetPrompt(string prompt)
+    {
+        _prompt = prompt;
+    }
+
+    public void SetEntry(string entry)
+    {
+        _entry = entry;
+    }
 
     public string DisplayEntry()
     {
-        string date = GetDate();
-
-        string text = prompt.GetRandomPrompt();
-
-        return $"Date:{date}\nQuestion:\n{text}";
+        return $"Date: {_date} - Prompt: {_prompt}\n {_entry}";
     }
 
-
-    public string GetEntry()
+    public virtual string GetStringRepresentation()
     {
-        // Console.WriteLine("Welcome!\nPlease select one of the keys below:\n(W)rite\n(D)isplay\n(L)oad\n(S)ave\n(Q)");
-
-        string entry = DisplayEntry();
-        string response = Console.ReadLine();
-
-        return $"{entry}\nResponse:\n{response}";
+        return $"{_date}|||{_prompt}|||{_entry}";
     }
-
-
-    
 }

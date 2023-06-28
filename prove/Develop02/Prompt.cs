@@ -1,25 +1,30 @@
 public class Prompt
 {
+    List <string> _promptList = new List<string>{
+        "Who was the most interesting person I interacted with today?",
+        "What was the best part of my day?", 
+        "How did I see the hand of the Lord in my life today?", 
+        "What was the strongest emotion I felt today?", 
+        "If I had one thing I could do over today, what would it be?"};
 
-    // List<string> _prompts = new List<string>();
-    List<string> _prompts = new List<string>();
-
-
-    private Prompt()
+    
+    public Prompt()
     {
-        _prompts.Add("How was your day?");
-        _prompts.Add("What was the best part of your day?");
-        _prompts.Add("What would you change from today?");
-        _prompts.Add("What good did you do today?");
-        _prompts.Add("What was the most important thing you learned today?");
+
     }
 
 
     public string GetRandomPrompt()
     {
-        var random = new Random();
-        var randomPrompt = random.Next(0, _prompts.Count);
+        // Create a Random object
+        Random random = new Random();
 
-        return _prompts[randomPrompt];
-    }
+        // Get a random index within the range of the list
+        int randomIndex = random.Next(0, _promptList.Count);
+
+        // Get the random string from the list using the random index
+        string randomString = _promptList[randomIndex];
+
+        return randomString;
+    }   
 }
