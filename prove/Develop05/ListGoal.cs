@@ -1,9 +1,6 @@
 public class ListGoal : Goal
 {
-    int _maxTimes = 0;
-    int _timesAccomplished = 0;
-    int _bonusPoints = 0;
-    
+   
 
     public ListGoal()
     {
@@ -11,46 +8,13 @@ public class ListGoal : Goal
     }
 
 
-    public void SetMaxTimes(int maxTimes)
-    {
-        _maxTimes = maxTimes;
-    }
-
-    public void AddTimesAccomplished()
+    public override void ChangeCompletion()
     {
         if (_timesAccomplished < _maxTimes)
         {
             _timesAccomplished = _timesAccomplished + 1;
         }
-    }
-
-    public void SetBonusPoints(int bonusPoints = 0)
-    {
-        _bonusPoints = bonusPoints;
-    }
-
-    public void SetTimesAccomplished(int timesAccomplished)
-    {
-        _timesAccomplished = timesAccomplished;
-    }
-
-    public int GetMaxTimes()
-    {
-        return _maxTimes;
-    }
-
-    public int GetTimesAccomplished()
-    {
-        return _timesAccomplished;
-    }
-
-    public int GetBonusPoints()
-    {
-        return _bonusPoints;
-    }
-
-    public override void ChangeCompletion()
-    {
+        
         if (_timesAccomplished == _maxTimes)
         {
             _completed = true;
@@ -61,9 +25,16 @@ public class ListGoal : Goal
         }
     }
 
+
+    public override void SetBonusPoints(int bonusPoints = 0)
+    {
+        _bonusPoints = bonusPoints;
+    }
+
+
     public override string GetStringRepresentation()
     {
-        string stringRepresentation = $"{GetName()}|{GetDescription()}|{GetPoints()}|{GetCompletion()}|{_maxTimes}|{_timesAccomplished}|{_bonusPoints}|{GetOptionNumber()}";
+        string stringRepresentation = $"{GetName()}|{GetDescription()}|{GetPoints()}|{GetCompletion()}|{_maxTimes}|{GetTimesAccomplished()}|{_bonusPoints}|{GetOptionNumber()}";
 
         return stringRepresentation;
     }
@@ -82,6 +53,6 @@ public class ListGoal : Goal
             completionString = "[ ]";
         }
         
-        return $"{GetOptionNumber()}. {completionString} {GetName()} ({GetDescription()}) -- Currently Completed: {_timesAccomplished}/{_maxTimes}";
+        return $"{GetOptionNumber()}. {completionString} {GetName()} ({GetDescription()}) -- Currently Completed: {GetTimesAccomplished()}/{_maxTimes}";
     }
 }

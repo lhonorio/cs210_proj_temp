@@ -228,16 +228,18 @@ public class Menu
 
                 string[] lines = System.IO.File.ReadAllLines(fileName);
 
+                stringList.Clear();
                 foreach (string line in lines)
                 {
-                    stringList.Clear();
                     stringList.Add(line);
                 }
 
-                // string last_line = stringList[stringList.Count - 1];
-                // string[] parts_load = last_line.Split("|");
-                // string lastSubstring = parts_load[parts_load.Length - 1];
-                // i = Convert.ToInt32(lastSubstring);
+                string[] file_lines = File.ReadAllLines(fileName);
+                string lastLine = file_lines[file_lines.Length - 1];
+                string[] fields = lastLine.Split('|');
+                string lastItem = fields[fields.Length - 1];
+                i = Convert.ToInt32(lastItem);
+                i = i + 1;
             }
 
             if (menuOption == 5)
@@ -256,7 +258,25 @@ public class Menu
                 Console.Write("\nWhich goal did you accomplish? ");
                 int accompOption = Convert.ToInt32(Console.ReadLine());
 
+                if (_goalList.Count < stringList.Count)
+                {
+                    _goalList.Clear();
+                    StringsToGoals(stringList, _goalList);
+                }
 
+                foreach (Goal goal in _goalList)
+                {
+                    if (accompOption == goal.GetOptionNumber())
+                    {
+                        goal.ChangeCompletion();
+                        _totalPoints = _totalPoints + goal.GetPoints();
+
+                        if (goal.GetCompletion() == true)
+                        {
+                            _totalPoints = _totalPoints + goal.GetBonusPoints();
+                        }
+                    }
+                }
             }
         }
     }

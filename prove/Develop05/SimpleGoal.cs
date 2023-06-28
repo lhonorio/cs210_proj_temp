@@ -6,4 +6,11 @@ public class SimpleGoal : Goal
     }
 
 
+    public override void ChangeCompletion()
+    {
+        if (_completed == false)
+        {
+            _completed = true;
+        }
+    }
 }

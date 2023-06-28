@@ -1,10 +1,13 @@
-public class Goal
+public abstract class Goal
 {
     protected bool _completed = false;
     string _name;
     string _description;
     int _points = 0;
     int _optionNumber = 0;
+    protected int _timesAccomplished = 0;
+    protected int _maxTimes = 0;
+    protected int _bonusPoints = 0;
 
 
     public Goal()
@@ -41,13 +44,41 @@ public class Goal
         }
     }
 
-    public virtual void ChangeCompletion()
+    public abstract void ChangeCompletion();
+
+    public void SetMaxTimes(int maxTimes)
     {
-        if (_completed == false)
-        {
-            _completed = true;
-        }
+        _maxTimes = maxTimes;
     }
+
+    public void SetTimesAccomplished(int timesAccomplished)
+    {
+        _timesAccomplished = timesAccomplished;
+    }
+
+    public int GetMaxTimes()
+    {
+        return _maxTimes;
+    }
+
+    public int GetTimesAccomplished()
+    {
+        return _timesAccomplished;
+    }
+
+    public virtual void SetBonusPoints(int bonusPoints = 0)
+    {
+        _bonusPoints = bonusPoints;
+    }
+
+
+    public virtual int GetBonusPoints()
+    {
+        return _bonusPoints;
+    }
+
+
+
 
     public void SetOptionNumber(int optionNumber)
     {
