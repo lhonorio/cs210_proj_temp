@@ -3,3 +3,4 @@ EternalGoal:::eg|eternal|20|False|2
 ListGoal:::lg|list|30|False|3|0|300|3
 SimpleGoal:::dance|dance 24/7|27|False|4
 ListGoal:::dance everyday|dance every single day|15|False|150|0|150|5
+SimpleGoal:::jdsfnk|ajknfsld|15|False|6

@@ -8,4 +8,14 @@ public class Scriptures
         _verse = verse;
         _text = text;
     }
+
+    public string GetVerse()
+    {
+        return _verse;
+    }
+
+    public string GetText()
+    {
+        return _text;
+    }
 }
